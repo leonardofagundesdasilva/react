@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles.css";
 import MovieCard from "./MovieCard";
+import MovieContext from "../context/MovieContext";
 
-export default function Watchlist({ movies, watchlist, toggleWatchlist }) {
+export default function Watchlist({ /*movies,*/ watchlist, toggleWatchlist }) {
+  const { movies } = useContext(MovieContext);
+
   return (
     <div>
       <h1 className="title">Your Watchlist</h1>

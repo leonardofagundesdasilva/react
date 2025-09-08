@@ -7,16 +7,17 @@ import MoviesGrid from "./components/MoviesGrid";
 import Watchlist from "./components/Watchlist";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { MovieProvider } from "./context/MovieProvider";
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  //const [movies, setMovies] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     fetch("movies.json")
       .then((response) => response.json())
       .then((data) => setMovies(data));
-  }, []);
+  }, []);*/
 
   const toggleWatchlist = (movieId) => {
     setWatchlist((prev) =>
@@ -42,28 +43,30 @@ function App() {
               </li>
             </ul>
           </nav>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <MoviesGrid
-                  movies={movies}
-                  watchlist={watchlist}
-                  toggleWatchlist={toggleWatchlist}
-                />
-              }
-            ></Route>
-            <Route
-              path="/watchlist"
-              element={
-                <Watchlist
-                  watchlist={watchlist}
-                  movies={movies}
-                  toggleWatchlist={toggleWatchlist}
-                />
-              }
-            ></Route>
-          </Routes>
+          <MovieProvider>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <MoviesGrid
+                    //movies={movies}
+                    watchlist={watchlist}
+                    toggleWatchlist={toggleWatchlist}
+                  />
+                }
+              />
+              <Route
+                path="/watchlist"
+                element={
+                  <Watchlist
+                    watchlist={watchlist}
+                    //movies={movies}
+                    toggleWatchlist={toggleWatchlist}
+                  />
+                }
+              />
+            </Routes>
+          </MovieProvider>
         </Router>
       </div>
 

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles.css";
 import MovieCard from "./MovieCard";
+import MovieContext from "../context/MovieContext";
 
-export default function MoviesGrid({ movies, watchlist, toggleWatchlist }) {
+export default function MoviesGrid({ /*movies,*/ watchlist, toggleWatchlist }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [genre, setGenre] = useState("All Genres");
   const [rating, setRating] = useState("All");
+  const { movies } = useContext(MovieContext);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
